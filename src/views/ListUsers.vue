@@ -1,0 +1,26 @@
+<template>
+  <div class="container-fluid">
+    <Header v-on:fetch-user="fetchUsers"/>
+
+    <Table :users="users" />
+  </div>
+</template>
+
+<script>
+import Header from "../components/Header";
+import Table from "../components/Table";
+
+export default {
+  data() {
+    return {
+      users: [],
+    };
+  },
+  components: { Header, Table },
+  methods: {
+    fetchUsers(users) {
+      this.users = users;
+    }
+  },
+};
+</script>
