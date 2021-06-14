@@ -8,7 +8,7 @@
           <button type="button" class="close" @click="closeModal" data-dismiss="modal">×</button>
         </div>
         <!-- Modal body -->
-        <div style="padding-top: 5rem">
+        <div class="modal-body">
           <Form @submit="createUser"/>
         </div>
         <!-- Modal footer -->
@@ -119,6 +119,11 @@ export default {
   &__footer {
     padding: 10px 20px 20px;
   }
+}
+
+.modal-body {
+  padding-top: 5rem;
+  overflow-y: scroll;
 }
 
 .fade-enter-active,
