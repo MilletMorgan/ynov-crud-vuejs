@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
-    <Header v-on:fetch-user="fetchUsers"/>
+    <Header v-on:fetch-user="fetchUsers" @mask="showMaskMethod"/>
 
-    <Table :users="users" />
+    <Table :users="users"/>
   </div>
 </template>
 
@@ -20,6 +20,10 @@ export default {
   methods: {
     fetchUsers(users) {
       this.users = users;
+    },
+
+    showMaskMethod(mask) {
+      this.$emit('mask', mask)
     }
   },
 };

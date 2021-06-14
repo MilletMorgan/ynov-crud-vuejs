@@ -1,17 +1,22 @@
 <template>
   <div>
+    <Modal v-if="showModal" @closemodal="closeModal"/>
+
     <div class="card mb-2 mt-2">
-      <div class="card-header p-3">
-        <h1>VueJS example</h1>
+      <div class="card-header p-3 ">
+        <div class="row">
+          <div class="col-md-10">
+            <h1>CRUD USER</h1>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-primary text-uppercase" @click="openModal">
+              Create user
+            </button>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2">
-            <button class="btn btn-primary" @click="fetchUsers">
-              Fetch all users
-            </button>
-          </div>
-
           <div class="col-md-4">
             <select
               id="genders"
@@ -36,7 +41,7 @@
             />
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-4 align-self-end">
             <span class="lead">{{ filteredUser.length }} lignes</span>
           </div>
         </div>
@@ -47,8 +52,11 @@
 
 <script>
 import axios from "axios";
+import Modal from "../components/Modal";
 
 export default {
+  name: 'Header',
+  components: { Modal },
   data() {
     return {
       gender: "",
@@ -56,7 +64,8 @@ export default {
       nonFilteredUsers: [],
       filteredUser: [],
       search: "",
-      loading: true
+      loading: true,
+      showModal: false,
     };
   },
   watch: {
@@ -79,7 +88,7 @@ export default {
     fetchUsers() {
       setTimeout(() => {
         axios("https://ynov-front.herokuapp.com/api/users").then(
-          ({ data: {data} }) => {
+          ({ data: { data } }) => {
             this.nonFilteredUsers = data.map((user) => ({
               id: user._id,
               age: new Date(Date.now() - new Date(user.birthDate).getTime()).getFullYear() - 1970,
@@ -135,6 +144,16 @@ export default {
         })
 
       this.$emit("fetch-user", this.filteredUser);
+    },
+
+    openModal() {
+      this.showModal = true
+      this.$emit('mask', true)
+    },
+
+    closeModal(){
+      this.showModal = false
+      this.$emit('mask', false)
     },
   },
 

@@ -21,7 +21,7 @@ const routes = [
     path: '/details/:id',
     name: 'Details',
     component: Details
-  }
+  },
 ]
 
 const router = new VueRouter({

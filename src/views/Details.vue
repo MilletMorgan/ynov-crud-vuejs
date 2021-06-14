@@ -46,16 +46,16 @@
       </div>
     </div>
 
-    <EditForm v-else :initial-values="user" @submit="updateUser"/>
+    <Form v-else :initial-values="user" @submit="updateUser" :add-classes="'w-50 shadow card'"/>
   </div>
 </template>
 <script>
 import axios from "axios";
-import EditForm from "@/components/Form";
+import Form from "@/components/Form";
 
 export default {
   name: 'Details',
-  components: { EditForm },
+  components: { Form },
   data() {
     return {
       user: {},
