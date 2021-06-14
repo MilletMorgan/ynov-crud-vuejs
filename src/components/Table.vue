@@ -37,8 +37,8 @@
             :key="user.email"
             @click="$router.push({name: 'Details', params: {'id': user.id}})"
         >
-          <td>
-            <img :src="user.avatar" class="img-fluid" :alt="user.name"/>
+          <td class="w-25">
+            <img :src="user.avatar" class="img-fluid h-auto w-25" :alt="user.name"/>
           </td>
           <td v-if="!user.name" v-html="user.nameFormated"/>
           <td v-else>{{ user.name }}</td>

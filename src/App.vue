@@ -4,7 +4,7 @@
       Liste des utilisateurs
     </router-link>
 
-    <div v-if="notification" :class="`bg-${notification.type}`" class="alert">
+    <div v-if="notification" :class="`bg-${notification.type}`" class="shadow text-uppercase alert w-25 mx-auto text-white text-center">
       {{ notification.message }}
     </div>
 
@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     showNotification(notification) {
-      console.log("show notification")
       this.notification = notification
     }
   }
