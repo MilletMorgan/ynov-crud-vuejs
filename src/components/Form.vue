@@ -1,8 +1,10 @@
 <template>
   <form class="mx-auto" @submit.prevent="saveForm" :class="addClasses">
     <div class="card-body p-5">
-      <img v-if="user.avatarUrl" :src="user.avatarUrl" alt="profile" class="img-fluid rounded mx-auto d-block mb-5 h-25 w-25"
-           style="margin-top: -100px">
+      <img :src="user.avatarUrl"
+           alt="profile"
+           class="img-fluid rounded mx-auto d-block mb-5 img-profile-size"
+      >
 
       <hr>
 
@@ -31,8 +33,12 @@
       </div>
 
       <div class="text-center mt-5">
-        <button type="submit" class="btn btn-primary ">
+        <button type="submit" class="btn btn-primary mr-2">
           SAVE
+        </button>
+
+        <button type="button" class="btn btn-danger" @click="closeForm">
+          CANCEL
         </button>
       </div>
     </div>
@@ -46,28 +52,23 @@ export default {
   data() {
     return {
       user: this.initialValues,
-      baseImage: "https://sumaleeboxinggym.com/wp-content/uploads/2018/06/Generic-Profile-1600x1600.png"
     }
-  },
-  beforeMount() {
-   // this.checkIfInitialValuesExist()
   },
   methods: {
     saveForm() {
       this.$emit("submit", this.user)
     },
-    checkIfInitialValuesExist() {
-      if (this.initialValues === undefined) this.user = {
-        lastName: "",
-        firstName: "",
-        birthDate: "",
-        phone: "",
-        gender: "",
-        details: "",
-        email: "",
-        avatarUrl: "https://sumaleeboxinggym.com/wp-content/uploads/2018/06/Generic-Profile-1600x1600.png"
-      }
+
+    closeForm() {
+      this.$emit("cancel")
     }
   }
 }
 </script>
+
+<style>
+.img-profile-size {
+  height: 145px;
+  margin-top: -75px
+}
+</style>

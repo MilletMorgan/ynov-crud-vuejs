@@ -86,8 +86,9 @@ export default {
 
   methods: {
     fetchUsers() {
+      // Timeout pour afficher le petit 'chargement en cours...'
       setTimeout(() => {
-        axios("https://ynov-front.herokuapp.com/api/users").then(
+        axios.get("https://ynov-front.herokuapp.com/api/users").then(
           ({ data: { data } }) => {
             this.nonFilteredUsers = data.map((user) => ({
               id: user._id,

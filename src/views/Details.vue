@@ -2,8 +2,10 @@
   <div class="container mt-5">
     <div v-if="!showEditForm" class="card shadow w-50 mx-auto">
       <div class="card-body p-5">
-        <img :src="user.avatarUrl" alt="profil" class="img-fluid rounded mx-auto d-block mb-5"
-             style="margin-top: -100px">
+        <img :src="user.avatarUrl"
+             alt="profil"
+             class="img-fluid rounded mx-auto d-block mb-5 img-profile-size"
+        >
 
         <hr>
 
@@ -46,7 +48,7 @@
       </div>
     </div>
 
-    <Form v-else :initial-values="user" @submit="updateUser" :add-classes="'w-50 shadow card'"/>
+    <Form v-else :initial-values="user" @submit="updateUser" @cancel="closeEdition" :add-classes="'w-50 shadow card'"/>
   </div>
 </template>
 <script>
@@ -58,7 +60,9 @@ export default {
   components: { Form },
   data() {
     return {
-      user: {},
+      user: {
+        avatarUrl: "https://sumaleeboxinggym.com/wp-content/uploads/2018/06/Generic-Profile-1600x1600.png"
+      },
       showEditForm: false
     }
   },
@@ -92,6 +96,10 @@ export default {
           message: e.message
         })
       }
+    },
+
+    closeEdition() {
+      this.showEditForm = false
     }
   },
   created() {
@@ -99,3 +107,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.img-profile-size {
+  height: 145px;
+  margin-top: -75px
+}
+</style>

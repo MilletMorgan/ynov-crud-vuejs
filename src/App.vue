@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="">
+  <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-dark text-light">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -38,10 +38,13 @@ export default {
   methods: {
     showNotification(notification) {
       this.notification = notification
+
+      setTimeout(() => {
+        this.notification = null
+      }, 5000)
     },
 
     showMaskMethod(mask) {
-      console.log("mask", mask)
       this.showMask = mask
     }
   }

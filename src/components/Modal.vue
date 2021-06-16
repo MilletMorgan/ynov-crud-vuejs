@@ -9,7 +9,7 @@
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-          <Form @submit="createUser"/>
+          <Form :initial-values="user" @submit="createUser"/>
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -29,7 +29,10 @@ export default {
   components: { Form },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      user: {
+        avatarUrl: 'https://sumaleeboxinggym.com/wp-content/uploads/2018/06/Generic-Profile-1600x1600.png'
+      }
     };
   },
   methods: {
