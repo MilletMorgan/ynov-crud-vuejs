@@ -57,7 +57,7 @@ export default {
       this.$emit("submit", this.user)
     },
     checkIfInitialValuesExist() {
-      if (this.initialValues == undefined) this.user = {
+      if (this.initialValues === undefined) this.user = {
         lastName: "",
         firstName: "",
         birthDate: "",
@@ -65,7 +65,7 @@ export default {
         gender: "",
         details: "",
         email: "",
-        avatarUrl: ""
+        avatarUrl: "https://sumaleeboxinggym.com/wp-content/uploads/2018/06/Generic-Profile-1600x1600.png"
       }
     }
   }
