@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <table v-if="!loading" id="tbl-users" class="table table-hover">
+
+      <table  id="tbl-users" class="table table-hover">
         <thead>
         <tr>
           <th/>
@@ -50,7 +51,8 @@
         </tr>
         </tbody>
       </table>
-      <div v-else>
+
+      <div v-if="users.length === 0" class="text-center">
         Chargement des données...
       </div>
     </div>
@@ -65,7 +67,10 @@ export default {
       sortDirection: "asc",
     };
   },
-  props: [ "users", "loading" ],
+  props: [ "users"],
+  created() {
+    console.log(this.users)
+  },
   computed: {
     sortedUsers() {
       return [ ...this.users ]
