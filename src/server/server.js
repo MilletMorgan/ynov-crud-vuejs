@@ -1,14 +1,17 @@
 const express = require("express")
 const path = require("path")
+const CONFIG =  require('../../config/config')
 const history = require("connect-history-api-fallback")
 
 const app = express()
 
 app.use(history())
-app.use('/', express.static(path.join(__dirname), '../../dist'))
+app.use(express.static(path.join(__dirname, CONFIG.distPath)))
 
-app.get('/', (req, res) => {
-	res.send('hello')
+app.use(express.json())
+
+app.get('/api/test', (req, res) => {
+  res.json({message: 'ok'})
 })
 
-app.listen(process.env.PORT || 5000, () => console.log("Server listening on port 3000"))
+app.listen(CONFIG.PORT, () => console.log(`Server listening on port ${CONFIG.PORT}`))

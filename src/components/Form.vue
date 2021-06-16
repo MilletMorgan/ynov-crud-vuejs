@@ -1,7 +1,7 @@
 <template>
   <form class="mx-auto" @submit.prevent="saveForm" :class="addClasses">
     <div class="card-body p-5">
-      <img :src="user.avatarUrl || baseImage" alt="profile" class="img-fluid rounded mx-auto d-block mb-5 h-25 w-25"
+      <img v-if="user.avatarUrl" :src="user.avatarUrl" alt="profile" class="img-fluid rounded mx-auto d-block mb-5 h-25 w-25"
            style="margin-top: -100px">
 
       <hr>
@@ -50,7 +50,7 @@ export default {
     }
   },
   beforeMount() {
-    this.checkIfInitialValuesExist()
+   // this.checkIfInitialValuesExist()
   },
   methods: {
     saveForm() {
